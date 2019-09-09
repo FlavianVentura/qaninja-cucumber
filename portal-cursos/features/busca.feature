@@ -8,5 +8,5 @@ Funcionalidade: Busca
     Cenario: Curso não encontrado
 
       Quando eu faço uma busca pelo termo "Selenium IDE"
-      Então devo ver a seuinte notificação "Desculpe não encontramos o curso que procura =("
+      Então devo ver a seguinte notificação "Desculpe não encontramos o curso que procura =("
    

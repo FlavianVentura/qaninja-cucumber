@@ -1,38 +1,18 @@
-
-Dado("que tenho uma lista de restaurantes") do
-  @restaurant_data = [
-    { name: 'Bread & Bakery', category: 'Padaria', delivery_time: '25 minutos', rating: '4.9'},
-    { name: 'Burger House', category: 'Hamburgers', delivery_time: '30 minutos', rating: '3.5'}
-  ]
-end  
+Dado("que temos os seguintes resutaurantes") do |table|
+  @restaurants_data = table.hashes
+end
 
 Quando("acesso a lista de restaurantes") do
   visit '/restaurants'
 end
 
-Então("vejo todas as opções disponíveis") do
-  @restaurants = all('.restaurant')
-  expect(@restaurants.size).to be > 0
-end
-
-Então("cada restaurante deve exibir sua categoria") do
+Então("devo ver todos os restaurantes dessa lista") do
   restaurants = all('.restaurant')
-  @restaurant_data.each_with_index do |value, index|
-  expect(restaurants[index]).to have_text value[:category]
-  end
 
-end
-
-Então("cada restaurante deve exibir o tempo de entrega") do
-  restaurants = all('.restaurant')
-  @restaurant_data.each_with_index do |value, index|
-  expect(restaurants[index]).to have_text value[:delivery_time]
-  end
-end
-
-Então("cada restaurante deve exibir sua nota de avaliação") do
-  restaurants = all('.restaurant')
-  @restaurant_data.each_with_index do |value, index|
-  expect(restaurants[index]).to have_text value[:rating]
+  @restaurants_data.each_with_index do |value, index|
+  expect(restaurants[index]).to have_text value['nome'].upcase
+  expect(restaurants[index]).to have_text value['categoria']
+  expect(restaurants[index]).to have_text value['entrega']
+  expect(restaurants[index]).to have_text value['avaliacao']
   end
 end
