@@ -1,6 +1,10 @@
 #language: pt
 
 Funcionalidade: Informações Adicionais
+    Para que eu possa ver todas as informações
+    Sendo um usuário que escolheu um restaurante
+    Posso ver a categoria, descrição e horário de funcionamento
+
 
     @infos
     Cenario: Detalhes do restaurante

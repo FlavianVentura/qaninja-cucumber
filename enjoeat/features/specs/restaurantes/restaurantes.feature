@@ -5,7 +5,6 @@ Funcionalidade: Restaurantes
   Sendo um usuário que deseja pedir comida
   Posso acessar a lista de restaurantes
 
-    @temp
     Cenario: Restaurantes disponíveis
 
         # Essa abordagem é diferente do esquema de cenário, onde aqui trabalhamos diretamente com a Tabela
