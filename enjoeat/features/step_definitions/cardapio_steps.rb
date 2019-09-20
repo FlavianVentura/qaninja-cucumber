@@ -1,25 +1,27 @@
-Dado('que que acesso a lista de restaurantes') do
-  visit '/restaurants'
+Dado('que acesso a lista de restaurantes') do
+  @rest_list_page.load
 end
 
-Quando('eu escolho o restaurante {string}') do |restaurant|
-  find('.restaurant', text: restaurant.upcase).click
+Quando('eu escolho o restaurante {string}') do |restaurante|
+  @rest_list_page.go(restaurante)
 end
 
-Então('vejo os seguintes itens disponiveis no cardapio') do |table|
-  itens = all('.menu-item-info-box')
-  products_data = table.hashes
-  products_data.each_with_index do |value, index|
-    expect(itens[index]).to have_text value['produto'].upcase
-    expect(itens[index]).to have_text value['descricao']
-    expect(itens[index]).to have_text value['preco']
+Então('vejo os seguintes itens disponíveis no cardápio:') do |table|
+  items = @rest_page.menu
+
+  product_data = table.hashes
+
+  product_data.each_with_index do |value, index|
+    expect(items[index]).to have_text value['produto'].upcase
+    expect(items[index]).to have_text value['descricao']
+    expect(items[index]).to have_text value['preco']
   end
 end
 
-Então('eu vejo as seguintes informacoes Adicionais') do |table|
+Então('eu vejo as seguintes informacoes adicionais:') do |table|
   infos = table.rows_hash
-  detail = find('#detail')
-  expect(detail).to have_text infos['categoria']
-  expect(detail).to have_text infos['descricao']
-  expect(detail).to have_text infos['horarios']
+  defail = @rest_page.details
+  expect(defail).to have_text infos['categoria']
+  expect(defail).to have_text infos['descricao']
+  expect(defail).to have_text infos['horarios']
 end
